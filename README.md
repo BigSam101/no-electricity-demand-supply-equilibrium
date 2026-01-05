@@ -1,7 +1,7 @@
-# Norway Electricity Demand and Supply Equilibrium
+# Norway (NO 1) Electricity Demand and Supply Equilibrium
 
 This repository contains a course project analysing electricity demand and
-supply equilibrium in Norway using economic theory and empirical data.
+supply equilibrium in Norway's NO1 price area using economic theory and empirical data.
 
 ## Overview
 The project estimates electricity demand and supply curves, identifies the
