@@ -100,8 +100,8 @@ Comparative statics are used to illustrate how demand and supply shifts affect e
 The figures below illustrate how electricity market equilibrium changes under different temperature and reservoir conditions in Norway’s NO1 electricity market.
 
 <p align="center">
-  <img src="figures/equilibrium_warm_normal_reservoir.png" width="46%" />
-  <img src="figures/equilibrium_cold_water_shortage.png" width="46%" />
+  <img src="figures/equilibrium_warm_normal_reservoir.png" width="48%" />
+  <img src="figures/equilibrium_cold_water_shortage.png" width="48%" />
 </p>
 
 <p align="center">
