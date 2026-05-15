@@ -12,10 +12,11 @@ The main objectives of the project are to:
 
 - Estimate electricity demand and supply curves for the NO1 market area
 - Identify equilibrium electricity prices and quantities
-- Analyse the effect of temperature and market conditions on electricity demand
+- Analyse how temperature and market conditions affect electricity demand
+- Examine how reservoir conditions, CO₂ prices, and fuel-related variables affect supply
 - Address simultaneity and endogeneity in electricity market estimation
 - Compare OLS, IV, and GMM estimation approaches
-- Visualize market equilibrium and comparative statics
+- Visualize market equilibrium and comparative statics under different scenarios
 
 ---
 
@@ -35,6 +36,8 @@ The project uses electricity market and economic data for Norway’s NO1 price a
 
 Hourly observations are cleaned and prepared for econometric analysis.
 
+> **Note:** The raw dataset is not made public. For questions regarding the data, please send a message to: `skwesi50@gmail.com`
+
 ---
 
 ## Methodology
@@ -46,16 +49,15 @@ Electricity demand is modelled as a function of:
 - Electricity prices
 - Heating demand driven by temperature
 - Weekend effects
+- Fuel-related market conditions
 
-The analysis begins with OLS estimation before applying:
+The analysis begins with OLS estimation before applying Instrumental Variables and GMM methods to address endogeneity between prices and quantities.
 
-- Instrumental Variables (IV / 2SLS)
-- Generalized Method of Moments (GMM)
+The demand-side analysis includes:
 
-to correct for endogeneity between prices and quantities.
-
-The repository also includes:
-
+- OLS estimation
+- IV / 2SLS estimation
+- GMM estimation
 - Weak instrument tests
 - Hausman-Wu endogeneity tests
 - Sargan overidentification tests
@@ -69,7 +71,9 @@ The supply side models electricity prices as a function of:
 
 - Electricity generation
 - CO₂ prices
+- Oil prices
 - Interest rates
+- Reservoir conditions
 - Weather conditions
 
 Alternative instrument specifications are explored to evaluate model robustness and instrument validity.
@@ -78,24 +82,48 @@ Alternative instrument specifications are explored to evaluate model robustness 
 
 ### 3. Market Equilibrium Analysis
 
-Estimated demand and supply curves are combined to identify equilibrium outcomes under different market conditions.
+Estimated demand and supply curves are combined to identify market equilibrium outcomes under different market conditions.
 
 The project examines how equilibrium changes under scenarios such as:
 
-- Cold versus warm weather conditions
+- Warm weekday with normal reservoir conditions
+- Cold weekday with water shortage conditions
 - Low versus high CO₂ prices
 - Alternative econometric specifications
 
-Comparative statics are used to illustrate shifts in market equilibrium.
+Comparative statics are used to illustrate how demand and supply shifts affect equilibrium prices and quantities.
+
+---
+
+## Example Equilibrium Scenarios
+
+The figures below illustrate how electricity market equilibrium changes under different temperature and reservoir conditions in Norway’s NO1 electricity market.
+
+<p align="center">
+  <img src="figures/equilibrium_warm_normal_reservoir.png" width="48%" />
+  <img src="figures/equilibrium_cold_water_shortage.png" width="48%" />
+</p>
+
+<p align="center">
+  <em>
+  Left: Warm weekday with normal reservoir conditions.  
+  Right: Cold weekday with water shortage conditions.
+  </em>
+</p>
+
+The warm weekday scenario represents a relatively stable market situation, where normal reservoir conditions support electricity supply and prices remain comparatively moderate.
+
+The cold weekday with water shortage scenario illustrates a tighter market condition. Demand increases because of heating needs, while hydropower supply becomes more constrained due to reduced water availability. As a result, the equilibrium price rises substantially and the market clears at a lower available supply level.
 
 ---
 
 ## Repository Structure
 
 ```text
-├── data/               # Raw and processed datasets
-├── notebooks/          # Jupyter notebooks for analysis
-├── figures/            # Generated plots and equilibrium figures
+├── data/               # Local data folder; raw dataset is not public.
+├── notebook/           # Jupyter notebook used for analysis
+├── figures/            # Generated equilibrium plots and figures
+├── .gitignore          # Files excluded from GitHub
 └── README.md
 ```
 
@@ -124,6 +152,7 @@ The repository includes:
 - Weak instrument tests
 - GMM estimation results
 - Weather-driven demand shift analysis
+- Reservoir-condition supply shift analysis
 - CO₂-price-driven supply shift analysis
 
 ---
@@ -133,9 +162,11 @@ The repository includes:
 The analysis highlights several important features of electricity markets:
 
 - Electricity demand in Norway is strongly influenced by temperature conditions
-- Endogeneity between prices and quantities leads to biased OLS estimates
+- Cold weather increases electricity demand because of heating needs
+- Reservoir conditions affect the supply side of the market, especially in a hydropower-dominated system
+- Endogeneity between prices and quantities can bias simple OLS estimates
 - IV and GMM approaches provide more economically meaningful elasticity estimates
-- Market equilibrium is highly sensitive to weather conditions and fuel-related costs
+- Market equilibrium is highly sensitive to weather conditions, reservoir availability, and fuel-related costs
 
 ---
 
@@ -149,6 +180,9 @@ This project is intended as a simplified structural equilibrium analysis and abs
 - Unit commitment constraints
 - Renewable intermittency
 - Zonal congestion effects
+- Strategic bidding behaviour
+
+The results should therefore be interpreted as an empirical learning exercise rather than a full operational electricity market model.
 
 ---
 
@@ -157,9 +191,10 @@ This project is intended as a simplified structural equilibrium analysis and abs
 Possible future extensions include:
 
 - Multi-zone Nordic electricity market analysis
-- Dynamic hydropower modelling
+- Dynamic hydropower reservoir modelling
 - Renewable generation integration
-- Time-varying elasticities
+- Time-varying demand and supply elasticities
+- More detailed treatment of fuel and CO₂ price shocks
 - Machine learning approaches for electricity market analysis
 - Scenario-based stochastic modelling
 
